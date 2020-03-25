@@ -1,5 +1,6 @@
 <?php
-//session_start();
+
+
 
 $conn = require __DIR__ . "/db_config.php";
 
@@ -13,13 +14,81 @@ $conn = require __DIR__ . "/db_config.php";
 //    return $user;
 //}
 
-$getAllUsers = function () use ($conn) {
+$getAllInterviewee = function () use ($conn) {
     $sql = "CALL splistaentrevistado()";
     $smtp = $conn->prepare($sql);
 
     $smtp->execute();
     $user = $smtp->fetchAll();
     return $user;
+};
+
+$insertInterviewee = function ($params) use($conn) {
+    $sql = "CALL spinsentrevistado(?, ?, ?)";
+        $smtp = $conn->prepare($sql);
+        $smtp->bindValue(1, $params['pnomentrevistado']);
+        $smtp->bindValue(2, $params['pnrocpf']);
+        $smtp->bindValue(3, "S");
+        $interviewee = $smtp->execute();
+
+    return $interviewee;
+};
+
+$insertUser = function ($params) use($conn) {
+    $sql = "CALL spinsupdusuario(?, ?)";
+        $smtp = $conn->prepare($sql);
+        $smtp->bindValue(1, $params['pdeslogin']);
+        $smtp->bindValue(2, $params['pdessenha']);
+        $interviewee = $smtp->execute();
+
+    return $interviewee;
+};
+
+$inabilitUser = function ($params) use($conn) {
+    $sql = "CALL spupdinabilitausuario(?)";
+    $smtp = $conn->prepare($sql);
+    $smtp->bindValue(1, $params);
+    $interviewee = $smtp->execute();
+
+    return $interviewee;
+};
+
+
+$deleteInterviewee = function ($params) use($conn) {
+
+    $sql = "CALL spdelentrevistado(?)";
+    $smtp = $conn->prepare($sql);
+    $smtp->bindValue(1, $params);
+    $interviewee = $smtp->execute();
+    return $interviewee;
+};
+
+$getAllUsers = function () use ($conn) {
+    $sql = "CALL splistausuario()";
+    $smtp = $conn->prepare($sql);
+
+    $smtp->execute();
+    $user = $smtp->fetchAll();
+    return $user;
+};
+
+$spSelGrafico01 = function ($params) use ($conn) {
+    $sql = "CALL spselgrafico01(?)";
+    $smtp = $conn->prepare($sql);
+    $smtp->bindValue(1, $params);
+    $smtp->execute();
+    $grafico01 = $smtp->fetch();
+    return $grafico01;
+};
+
+$spSelLogin = function ($params) use ($conn) {
+    $sql = "CALL spselLogin(?, ?)";
+    $smtp = $conn->prepare($sql);
+    $smtp->bindValue(1, $params['pdeslogin']);
+    $smtp->bindValue(2, $params['pdessenha']);
+    $smtp->execute();
+    $login = $smtp->fetch();
+    return $login;
 };
 
 function validateAuth()

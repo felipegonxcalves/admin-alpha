@@ -52,19 +52,19 @@
                 <ul class="list-unstyled navbar__list">
 
                     <li>
-                        <a href="chart.html">
+                        <a href="index.php">
                             <i class="fas fa-chart-bar"></i>Cadastro de Cliente</a>
                     </li>
                     <li>
-                        <a href="table.html">
+                        <a href="relatorio.php">
                             <i class="fas fa-table"></i>Relatórios</a>
                     </li>
+<!--                    <li>-->
+<!--                        <a href="form.html">-->
+<!--                            <i class="far fa-check-square"></i>Gráficos</a>-->
+<!--                    </li>-->
                     <li>
-                        <a href="form.html">
-                            <i class="far fa-check-square"></i>Gráficos</a>
-                    </li>
-                    <li>
-                        <a href="calendar.html">
+                        <a href="cadastro_usuario.php">
                             <i class="fas fa-calendar-alt"></i>Cadastro de Usuários</a>
                     </li>
                 </ul>
