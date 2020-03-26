@@ -91,12 +91,12 @@ $spSelLogin = function ($params) use ($conn) {
     return $login;
 };
 
-function validateAuth()
-{
-    if (!isset($_SESSION['DATA_USER'])){
-        header("Location: login.php");exit;
-    }
-}
+//function validateAuth()
+//{
+//    if (!isset($_SESSION['DATA_USER'])){
+//        header("Location: login.php");exit;
+//    }
+//}
 
 //function insertQuestion($data, $conn)
 //{

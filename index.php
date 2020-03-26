@@ -1,9 +1,12 @@
 <?php
+    require_once __DIR__ . '/validate-login.php';
+    validateAuth();
     require __DIR__ . '/header_template.php';
     require __DIR__ . '/menu.php';
     require_once __DIR__ . '/functions.php';
 
-    validateAuth();
+
+
 ?>
 
 

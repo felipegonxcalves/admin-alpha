@@ -1,8 +1,10 @@
 <?php
+require_once __DIR__ . '/validate-login.php';
+validateAuth();
 require __DIR__ . '/header_template.php';
 require __DIR__ . '/menu.php';
 require_once __DIR__ . '/functions.php';
-validateAuth();
+
 ?>
 
 
@@ -126,19 +128,61 @@ validateAuth();
     function exibirGraficos(element) {
         let pideentrevistado = element.dataset.id;
 
-        const requestList = $.ajax({
-            method:'POST',
-            url:'graficos.php',
-            data:{pideentrevistado: pideentrevistado, tipoGrafico: "01"},
-            dataType:'json'
-        });
+        // const requestList = $.ajax({
+        //     method:'POST',
+        //     url:'graficos.php',
+        //     data:{pideentrevistado: pideentrevistado, tipoGrafico: "01"},
+        //     dataType:'json'
+        // });
+        //
+        // requestList.done(function(e){
+        //     let ctx = document.getElementById('grafico01');
+        //     var myRadarChart = new Chart(ctx, {
+        //         type: 'radar',
+        //         data: {
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3]
+        //         }
+        //     });
+        // });
 
-        requestList.done(function(e){
-            let ctx = document.getElementById('grafico01');
-            var myRadarChart = new Chart(ctx, {
-                type: 'radar',
-                data: e
-            });
+
+        let ctx = document.getElementById('grafico01');
+        var myChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
         });
 
 
