@@ -37,7 +37,7 @@ require_once __DIR__ . '/functions.php';
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header" id="teste-teste">
                                 <small>Cadastro de Usuário</small>
                             </div>
                             <div class="card-body card-block">
@@ -50,8 +50,24 @@ require_once __DIR__ . '/functions.php';
                     <div class="col-lg-6">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
-                                <h3 class="title-2 m-b-40">Rader chart</h3>
-                                <canvas id="grafico01"></canvas>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <small>Gráfico de Perfil Comportamental</small>
+                                    </div>
+                                    <canvas id="grafico01"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="au-card m-b-30">
+                            <div class="au-card-inner">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <small>Gráfico de Dominância Cerebral</small>
+                                    </div>
+                                    <canvas id="grafico02"></canvas>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -128,83 +144,83 @@ require_once __DIR__ . '/functions.php';
     function exibirGraficos(element) {
         let pideentrevistado = element.dataset.id;
 
-        // const requestList = $.ajax({
-        //     method:'POST',
-        //     url:'graficos.php',
-        //     data:{pideentrevistado: pideentrevistado, tipoGrafico: "01"},
-        //     dataType:'json'
-        // });
-        //
-        // requestList.done(function(e){
-        //     let ctx = document.getElementById('grafico01');
-        //     var myRadarChart = new Chart(ctx, {
-        //         type: 'radar',
-        //         data: {
-        //             label: '# of Votes',
-        //             data: [12, 19, 3, 5, 2, 3]
-        //         }
-        //     });
-        // });
+        const requestGrafico = $.ajax({
+            method:'POST',
+            url:'graficos.php',
+            data: {pideentrevistado: pideentrevistado, tipoGrafico: "01"},
+            dataType:'json'
+        });
 
-
-        let ctx = document.getElementById('grafico01');
-        var myChart = new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+        requestGrafico.done(function(response){
+            if (response.status){
+                console.log(response);
+                let grafico01 = document.getElementById('grafico01');
+                var myChart = new Chart(grafico01, {
+                    type: 'radar',
+                    data: {
+                        labels: [response.grafico1[0]],
+                        datasets: [{
+                            label: response.grafico1[0],
+                            data: [response.grafico1[1], response.grafico1[2]],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
                         }
-                    }]
-                }
+                    }
+                });
+
+                let grafico02 = document.getElementById('grafico02');
+                var myChart02 = new Chart(grafico02, {
+                    type: 'radar',
+                    data: {
+                        labels: [response.grafico2[0]],
+                        datasets: [{
+                            label: response.grafico2[0],
+                            data: [response.grafico2[1], response.grafico2[2]],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+                window.scrollTo(0, 0);
             }
         });
 
 
     }
-    // function editUser(element){
-    //     document.getElementById('pdeslogin').value = element.dataset.login;
-    //     document.getElementById('pdessenha').value = element.dataset.senha;
-    //     document.getElementById('pideusuario').value = element.dataset.id;
-    //     // document.getElementById('type_operation').value = "update";
-    //     document.getElementById('pdeslogin').focus();
-    // }
-    //
-    // function InabiliteUser() {
-    //     document.getElementById('type_operation').value = "inabilit";
-    //     let ideusuario = document.getElementById('pideusuario').value
-    //     document.getElementById('btn-submit-form').click();
-    // }
-    //
-    // function clearInputs() {
-    //     document.getElementById('pdeslogin').value = "";
-    //     document.getElementById('pdessenha').value = "";
-    // }
+
 </script>
 
 </body>

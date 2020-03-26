@@ -81,6 +81,15 @@ $spSelGrafico01 = function ($params) use ($conn) {
     return $grafico01;
 };
 
+$spSelGrafico02 = function ($params) use ($conn) {
+    $sql = "CALL spselgrafico02(?)";
+    $smtp = $conn->prepare($sql);
+    $smtp->bindValue(1, $params);
+    $smtp->execute();
+    $grafico01 = $smtp->fetch();
+    return $grafico01;
+};
+
 $spSelLogin = function ($params) use ($conn) {
     $sql = "CALL spselLogin(?, ?)";
     $smtp = $conn->prepare($sql);
