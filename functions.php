@@ -77,7 +77,7 @@ $spSelGrafico01 = function ($params) use ($conn) {
     $smtp = $conn->prepare($sql);
     $smtp->bindValue(1, $params);
     $smtp->execute();
-    $grafico01 = $smtp->fetch();
+    $grafico01 = $smtp->fetchAll();
     return $grafico01;
 };
 
@@ -86,7 +86,7 @@ $spSelGrafico02 = function ($params) use ($conn) {
     $smtp = $conn->prepare($sql);
     $smtp->bindValue(1, $params);
     $smtp->execute();
-    $grafico01 = $smtp->fetch();
+    $grafico01 = $smtp->fetchAll();
     return $grafico01;
 };
 

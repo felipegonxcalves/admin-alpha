@@ -34,18 +34,18 @@ require_once __DIR__ . '/functions.php';
     <div class="main-content">
         <div class="section__content section__content--p30">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header" id="teste-teste">
-                                <small>Cadastro de Usuário</small>
-                            </div>
-                            <div class="card-body card-block">
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="row">-->
+<!--                    <div class="col-lg-12">-->
+<!--                        <div class="card">-->
+<!--                            <div class="card-header" id="teste-teste">-->
+<!--                                <small>Cadastro de Usuário</small>-->
+<!--                            </div>-->
+<!--                            <div class="card-body card-block">-->
+<!---->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="au-card m-b-30">
@@ -54,7 +54,7 @@ require_once __DIR__ . '/functions.php';
                                     <div class="card-header">
                                         <small>Gráfico de Perfil Comportamental</small>
                                     </div>
-                                    <canvas id="grafico01"></canvas>
+                                    <canvas id="grafico02"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@ require_once __DIR__ . '/functions.php';
                                     <div class="card-header">
                                         <small>Gráfico de Dominância Cerebral</small>
                                     </div>
-                                    <canvas id="grafico02"></canvas>
+                                    <canvas id="grafico01"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -158,10 +158,10 @@ require_once __DIR__ . '/functions.php';
                 var myChart = new Chart(grafico01, {
                     type: 'radar',
                     data: {
-                        labels: [response.grafico1[0]],
+                        labels: [response.grafico1[0].desdominancia, response.grafico1[1].desdominancia, response.grafico1[2].desdominancia, response.grafico1[3].desdominancia],
                         datasets: [{
-                            label: response.grafico1[0],
-                            data: [response.grafico1[1], response.grafico1[2]],
+                            label: 'Dominância Cerebral',
+                            data: [response.grafico1[0].valpeso, response.grafico1[1].valpeso, response.grafico1[2].valpeso, response.grafico1[3].valpeso],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)'
@@ -188,10 +188,10 @@ require_once __DIR__ . '/functions.php';
                 var myChart02 = new Chart(grafico02, {
                     type: 'radar',
                     data: {
-                        labels: [response.grafico2[0]],
+                        labels: [response.grafico2[0].desdominancia, response.grafico2[1].desdominancia, response.grafico2[2].desdominancia, response.grafico2[3].desdominancia],
                         datasets: [{
-                            label: response.grafico2[0],
-                            data: [response.grafico2[1], response.grafico2[2]],
+                            label: 'Perfil comportamental',
+                            data: [response.grafico2[0].valpeso, response.grafico2[1].valpeso, response.grafico2[2].valpeso, response.grafico2[3].valpeso],
                             backgroundColor: [
                                 'rgba(255, 99, 132, 0.2)',
                                 'rgba(54, 162, 235, 0.2)'
