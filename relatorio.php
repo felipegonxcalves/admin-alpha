@@ -34,22 +34,55 @@ require_once __DIR__ . '/functions.php';
     <div class="main-content">
         <div class="section__content section__content--p30">
             <div class="container-fluid">
-<!--                <div class="row">-->
-<!--                    <div class="col-lg-12">-->
-<!--                        <div class="card">-->
-<!--                            <div class="card-header" id="teste-teste">-->
-<!--                                <small>Cadastro de Usuário</small>-->
-<!--                            </div>-->
-<!--                            <div class="card-body card-block">-->
-<!---->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header" id="teste-teste">
+                                <small>Dados do Usuário</small>
+                            </div>
+                            <div class="card-body card-block">
+                                <table class="table ">
+                                    <tbody>
+                                        <tr>
+                                            <td>Nome</td>
+                                            <td id="value_name"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cpf</td>
+                                            <td id="value_cpf"></td>
+                                        </tr>
+                                    </tbody>
+
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>Total de respostas ID</td>
+                                        <td id="total_id"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total de respostas IE</td>
+                                        <td id="total_ie"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total de respostas SD</td>
+                                        <td id="total_sd"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total de respostas SE</td>
+                                        <td id="total_se"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                                 <div class="card">
                                     <div class="card-header">
                                         <small>Gráfico de Perfil Comportamental</small>
@@ -62,6 +95,27 @@ require_once __DIR__ . '/functions.php';
                     <div class="col-lg-6">
                         <div class="au-card m-b-30">
                             <div class="au-card-inner">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>Total de respostas I</td>
+                                        <td id="total_i"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total de respostas C</td>
+                                        <td id="total_c"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total de respostas O</td>
+                                        <td id="total_o"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Total de respostas A</td>
+                                        <td id="total_a"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
                                 <div class="card">
                                     <div class="card-header">
                                         <small>Gráfico de Dominância Cerebral</small>
@@ -154,6 +208,7 @@ require_once __DIR__ . '/functions.php';
         requestGrafico.done(function(response){
             if (response.status){
                 console.log(response);
+                populateInputsInfo(element, response);
                 let grafico01 = document.getElementById('grafico01');
                 var myChart = new Chart(grafico01, {
                     type: 'radar',
@@ -219,6 +274,20 @@ require_once __DIR__ . '/functions.php';
         });
 
 
+    }
+
+    function populateInputsInfo(element, obj) {
+        document.getElementById('value_name').innerText = element.dataset.nomentrevistado;
+        document.getElementById('value_cpf').innerText = element.dataset.nrocpf;
+        document.getElementById('total_id').innerText = obj.grafico2[0].valpeso;
+        document.getElementById('total_ie').innerText = obj.grafico2[1].valpeso;
+        document.getElementById('total_sd').innerText = obj.grafico2[2].valpeso;
+        document.getElementById('total_se').innerText = obj.grafico2[3].valpeso;
+
+        document.getElementById('total_i').innerText = obj.grafico1[0].valpeso + '%';
+        document.getElementById('total_c').innerText = obj.grafico1[1].valpeso + '%';
+        document.getElementById('total_o').innerText = obj.grafico1[2].valpeso + '%';
+        document.getElementById('total_a').innerText = obj.grafico1[3].valpeso + '%';
     }
 
 </script>
