@@ -279,15 +279,15 @@ require_once __DIR__ . '/functions.php';
     function populateInputsInfo(element, obj) {
         document.getElementById('value_name').innerText = element.dataset.nomentrevistado;
         document.getElementById('value_cpf').innerText = element.dataset.nrocpf;
-        document.getElementById('total_id').innerText = obj.grafico2[0].valpeso;
-        document.getElementById('total_ie').innerText = obj.grafico2[1].valpeso;
-        document.getElementById('total_sd').innerText = obj.grafico2[2].valpeso;
-        document.getElementById('total_se').innerText = obj.grafico2[3].valpeso;
+        document.getElementById('total_id').innerText = '- ' + obj.grafico2[0].valpeso;
+        document.getElementById('total_ie').innerText = '- ' + obj.grafico2[1].valpeso;
+        document.getElementById('total_sd').innerText = '- ' + obj.grafico2[2].valpeso;
+        document.getElementById('total_se').innerText = '- ' + obj.grafico2[3].valpeso;
 
-        document.getElementById('total_i').innerText = obj.grafico1[0].valpeso + '%';
-        document.getElementById('total_c').innerText = obj.grafico1[1].valpeso + '%';
-        document.getElementById('total_o').innerText = obj.grafico1[2].valpeso + '%';
-        document.getElementById('total_a').innerText = obj.grafico1[3].valpeso + '%';
+        document.getElementById('total_i').innerText = '- ' + obj.grafico1[0].valpeso + '%';
+        document.getElementById('total_c').innerText = '- ' + obj.grafico1[1].valpeso + '%';
+        document.getElementById('total_o').innerText = '- ' + obj.grafico1[2].valpeso + '%';
+        document.getElementById('total_a').innerText = '- ' +obj.grafico1[3].valpeso + '%';
     }
 
 </script>

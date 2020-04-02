@@ -20,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 
     $login = $spSelLogin($_POST);
     if ($login['ideusuario'] == "0"){
-        var_dump("Entrou");
         header("Location: login.php");exit;
     }else{
         $_SESSION['DATA_USER'] = $login;
