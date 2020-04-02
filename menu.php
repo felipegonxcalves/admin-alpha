@@ -67,6 +67,10 @@
                         <a href="cadastro_usuario.php">
                             <i class="fas fa-calendar-alt"></i>Cadastro de Usuários</a>
                     </li>
+                    <li>
+                        <a href="logout.php">
+                            <i class="fas fa-backward"></i>Sair</a>
+                    </li>
                 </ul>
             </nav>
         </div>
